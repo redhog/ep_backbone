@@ -1,0 +1,23 @@
+{
+  "parts": [
+    { "name": "pages", "pre": ["ep_express/socketio"],
+      "hooks": {
+        "socketio": "ep_backbone/node/hooks/express/pages:socketio",
+        "clientPaths": "ep_backbone/node/hooks/dojoConfig:clientPaths"
+      },
+      "client_hooks": {
+        "documentReadyBackbone": "ep_backbone/static/js/hooks/backbone:documentReadyBackbone" },
+      "urlmap": {
+        "/backbone": "ep_backbone/templates/page.html"
+      }
+    },
+    { "name": "staticFiles", "post": ["ep_express/static"],
+      "urlmap": {
+        "/static/plugins/(package_name:ep_backbone)/static/(mod:underscore|backbone|backbone-socketio)/(path:.*)/?": {
+          "fn":"ep_express/node/hooks/express/static:static",
+          "args": {"src": "(package_path:)/node_modules/(mod:)/(path:)"}
+        }
+      }
+    }
+  ]
+}

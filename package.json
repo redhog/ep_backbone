@@ -1,0 +1,20 @@
+{
+  "name"           : "ep_backbone",
+  "description"    : "Backbone models with client/server sync using socket.io",
+  "homepage"       : "http://github.com/redhog/carabiner",
+  "keywords"       : ["backbone", "models"],
+  "author"         : "Egil Möller",
+  "contributors"   : [],
+  "dependencies"   : {
+                      "backbone"		: ">=1.2.3",
+                      "underscore"              : ">=1.8.3",
+                      "backbone-socketio"       : "https://github.com/redhog/backbone-socketio.git#master"
+                     },
+  "bin":             { },
+  "devDependencies": { "wd"      : "0.3.11" },
+  "engines"        : { "node" : ">=0.10.0", "npm"  : ">=1.0" },
+  "repository"     : { "type" : "git",
+                       "url" : "http://github.com/redhog/carabiner.git"
+                     },
+  "version"        : "0.0.1"
+}
