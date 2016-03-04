@@ -5,7 +5,7 @@ var BackboneSocketioServer = require("backbone-socketio/src/backbone-socketio");
 
 
 exports.socketio = function (hook_name, args, cb) {
-  BackboneSocketioServer.init(args.io);
+  BackboneSocketioServer.init(args.io.sockets);
 
   exports.backboneMixins = new BackboneSocketio(args.io.sockets);
   exports.SocketModel = Backbone.Model.extend(exports.backboneMixins.mixins.model);
@@ -17,7 +17,7 @@ exports.socketio = function (hook_name, args, cb) {
     }
   });
 
-  x = new MyModel();
+  x = new MyModel({id: 'xxx'});
 
   x.on('change:value', function(model, value) {
     console.log("VALUE CHANGED", value);

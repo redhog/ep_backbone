@@ -12,12 +12,8 @@ define([
       var socket,
         loc = document.location,
         port = loc.port == "" ? (loc.protocol == "https:" ? 443 : 80) : loc.port,
-        url = loc.protocol + "//" + loc.hostname + ":" + port + "/",
-        pathComponents = location.pathname.split('/'),
-        // Strip admin/plugins
-        baseURL = url + pathComponents.slice(0,pathComponents.length-2).join('/') + '/',
-        resource = baseURL + "socket.io";
-      socket = io.connect(resource);
+        url = loc.protocol + "//" + loc.hostname + ":" + port,
+      socket = io.connect(url);
 
       var backboneMixins = new BackboneSocketio(socket),
         SocketModel = Backbone.Model.extend(backboneMixins.mixins.model),
@@ -34,7 +30,7 @@ define([
       });
 
 
-      x = new MyModel();
+      x = new MyModel({id: 'xxx'});
 
       x.on('change:value', function(model, value) {
         console.log("VALUE CHANGED", value);
