@@ -17,11 +17,18 @@ exports.socketio = function (hook_name, args, cb) {
     }
   });
 
-  x = new MyModel({id: 'xxx'});
-
-  x.on('change:value', function(model, value) {
-    console.log("VALUE CHANGED", value);
+  var MyCollection = exports.SocketCollection.extend({
+    model: MyModel,
+    initialize: function () {
+      MyCollection.__super__.initialize.call(this);
+    }
   });
 
-  x.set({value: 4711});
+  var c = new MyCollection({id:'ccc'});
+  c.on('add', function(model, collection, options) {
+    console.log("ADD", collection.cid +":" + collection.id, model.cid + ":" + model.id);
+    model.on('change:value', function(model, value) {
+      console.log("VALUE CHANGED", collection.cid +":" + collection.id, model.cid + ":" + model.id, value);
+    });
+  });
 };
