@@ -24,7 +24,7 @@ exports.socketio = function (hook_name, args, cb) {
     }
   });
 
-  var c = new MyCollection({id:'ccc'});
+    var c = new MyCollection([], {id:'ccc'});
   c.on('add', function(model, collection, options) {
     console.log("ADD", collection.cid +":" + collection.id, model.cid + ":" + model.id);
     model.on('change:value', function(model, value) {
